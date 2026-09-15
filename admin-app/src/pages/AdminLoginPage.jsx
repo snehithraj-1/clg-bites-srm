@@ -5,8 +5,8 @@ import { useAdminAuth } from '../context/AdminAuthContext';
 export default function AdminLoginPage() {
   const { loginAdmin, unauthorizedError } = useAdminAuth();
 
-  const [identifier, setIdentifier] = useState('collagebites1@gmail.com');
-  const [password, setPassword] = useState('Clgbites123');
+  const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -67,7 +67,7 @@ export default function AdminLoginPage() {
           )}
 
           {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off">
             <div>
               <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                 <User size={12} className="text-[#FF5722]" />
@@ -76,9 +76,10 @@ export default function AdminLoginPage() {
               <input
                 type="text"
                 required
+                autoComplete="off"
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
-                placeholder="rajsrmap2@gmail.com"
+                placeholder="Enter admin email or username"
                 className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-950 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#FF5722]"
               />
             </div>
@@ -91,6 +92,7 @@ export default function AdminLoginPage() {
               <input
                 type="password"
                 required
+                autoComplete="new-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
