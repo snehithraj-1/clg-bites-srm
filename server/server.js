@@ -385,8 +385,7 @@ async function initNeonSchema() {
         ('admin-super', 'collagebites1@gmail.com', 'Collage Bites (Super Admin)', 'super_admin', null, 'Clgbites123'),
         ('admin-super-alias', 'collagebites@gmail.com', 'Collage Bites Admin', 'super_admin', null, 'Clgbites123'),
         ('admin-lhk', 'lhk_admin', 'Local Home Kitchen Staff', 'restaurant_admin', 'local-home-kitchen', 'LHK@Campus2026'),
-        ('admin-clg', 'clgbites_admin', 'Biryani Nation Staff', 'restaurant_admin', 'clg-bites-biryani-nation', 'CLG@Campus2026'),
-        ('admin-vilasa', 'vilasa_admin', 'Vilasa Café Admin', 'restaurant_admin', 'vilasa-cafe', 'Vilasa@Campus2026')
+        ('admin-clg', 'clgbites_admin', 'Biryani Nation Staff', 'restaurant_admin', 'clg-bites-biryani-nation', 'CLG@Campus2026')
       ON CONFLICT (id) DO UPDATE SET
         username = EXCLUDED.username,
         name = EXCLUDED.name,
@@ -1015,19 +1014,6 @@ app.post('/api/auth/admin-login', async (req, res) => {
         created_at: new Date().toISOString()
       };
       return res.json({ success: true, token: makeAdminToken(clgProfile), user: clgProfile, message: 'Biryani Nation Admin authenticated' });
-    }
-
-    if ((inputIdentifier === 'vilasa_admin' || inputIdentifier === 'vilasa@campusbites.com' || inputIdentifier === 'vilasa') && (cleanPassword === 'Vilasa@Campus2026' || cleanPassword === 'vilasa123')) {
-      const vilasaProfile = {
-        id: 'admin-vilasa',
-        username: 'vilasa_admin',
-        name: 'Vilasa Café Admin',
-        email: 'vilasa@campusbites.com',
-        role: 'restaurant_admin',
-        restaurant_id: 'vilasa-cafe',
-        created_at: new Date().toISOString()
-      };
-      return res.json({ success: true, token: makeAdminToken(vilasaProfile), user: vilasaProfile, message: 'Vilasa Café Admin authenticated' });
     }
 
     console.warn(`[Admin Auth Rejected] Invalid credentials attempt: ${inputIdentifier}`);
@@ -2166,7 +2152,7 @@ app.post('/api/menu', async (req, res) => {
 
   const itemId = data.id || `dish-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`;
   const restaurantName = data.restaurant_name || 
-    (data.restaurant_id === 'vilasa-cafe' ? 'Vilasa Café' : (data.restaurant_id === 'clg-bites-biryani-nation' ? 'Biryani Nation' : 'Local Home Kitchen'));
+    (data.restaurant_id === 'clg-bites-biryani-nation' ? 'Biryani Nation' : 'Local Home Kitchen');
 
   const defaultImg = data.is_veg 
     ? 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80'

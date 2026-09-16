@@ -456,8 +456,6 @@ export default function AdminDashboardPage() {
                       ? 'Local Home Kitchen'
                       : assignedRestaurantId === 'clg-bites-biryani-nation'
                       ? 'Biryani Nation'
-                      : assignedRestaurantId === 'vilasa-cafe'
-                      ? 'Vilasa Café'
                       : `${profile?.name || 'Kitchen Staff'}`
                     : 'Srm : College Bites'}
                 </span>
@@ -661,8 +659,6 @@ export default function AdminDashboardPage() {
                 ? 'Local Home Kitchen'
                 : (isRestaurantAdmin && assignedRestaurantId === 'clg-bites-biryani-nation') || activeRestaurantTab === 'clg-bites-biryani-nation'
                 ? 'Biryani Nation'
-                : (isRestaurantAdmin && assignedRestaurantId === 'vilasa-cafe') || activeRestaurantTab === 'vilasa-cafe'
-                ? 'Vilasa Café'
                 : 'All Restaurants'
             }
             onInspectOrder={(order) => setInspectingOrder(order)}

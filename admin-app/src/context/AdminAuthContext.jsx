@@ -192,22 +192,6 @@ export function AdminAuthProvider({ children }) {
         return { success: true, user: clgProfile };
       }
 
-      if ((lowerInput === 'vilasa_admin' || lowerInput === 'vilasa@collegebites.com' || lowerInput === 'vilasa@campusbites.com' || lowerInput === 'vilasa') && (cleanPassword === 'Vilasa@Campus2026' || cleanPassword === 'Vilasa123')) {
-        const vilasaProfile = {
-          id: 'admin-vilasa',
-          username: 'vilasa_admin',
-          name: 'Vilasa Café Admin',
-          email: 'vilasa@campusbites.com',
-          role: 'restaurant_admin',
-          restaurant_id: 'vilasa-cafe',
-          created_at: new Date().toISOString()
-        };
-        setProfile(vilasaProfile);
-        setUser({ id: vilasaProfile.id, email: vilasaProfile.email });
-        try { localStorage.setItem('cb_admin_profile', JSON.stringify(vilasaProfile)); } catch {}
-        return { success: true, user: vilasaProfile };
-      }
-
       return {
         success: false,
         error: 'Invalid administrator credentials. Access restricted to authorized campus staff.'

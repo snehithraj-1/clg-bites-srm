@@ -283,9 +283,6 @@ export default function DeliveryPartnersModal({ isOpen, onClose, assignedRestaur
                     {(!assignedRestaurantId || assignedRestaurantId === 'clg-bites-biryani-nation') && (
                       <option value="clg-bites-biryani-nation">CLG Bites Biryani Nation</option>
                     )}
-                    {(!assignedRestaurantId || assignedRestaurantId === 'vilasa-cafe') && (
-                      <option value="vilasa-cafe">Vilasa Café</option>
-                    )}
                   </select>
                 </div>
               </div>
@@ -349,8 +346,6 @@ export default function DeliveryPartnersModal({ isOpen, onClose, assignedRestaur
                                 ? 'Local Home Kitchen'
                                 : p.restaurant_id === 'clg-bites-biryani-nation'
                                 ? 'Biryani Nation'
-                                : p.restaurant_id === 'vilasa-cafe'
-                                ? 'Vilasa Café'
                                 : 'Campus Fleet'}
                             </span>
                           </div>

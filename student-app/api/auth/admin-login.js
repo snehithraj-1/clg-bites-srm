@@ -42,7 +42,6 @@ export default async function handler(req, res) {
         const isPassValid = account.password_hash === cleanPassword ||
           (cleanPassword === 'lhk123' && account.restaurant_id === 'local-home-kitchen') ||
           (cleanPassword === 'clg123' && account.restaurant_id === 'clg-bites-biryani-nation') ||
-          (cleanPassword === 'vilasa123' && account.restaurant_id === 'vilasa-cafe') ||
           (cleanPassword === 'admin123' && account.role === 'super_admin');
 
         if (isPassValid) {
@@ -110,19 +109,6 @@ export default async function handler(req, res) {
       return res.status(200).json({ success: true, token: makeAdminToken(clgProfile), user: clgProfile, message: 'Biryani Nation Admin authenticated' });
     }
 
-    if ((inputIdentifier === 'vilasa_admin' || inputIdentifier === 'vilasa@campusbites.com' || inputIdentifier === 'vilasa') && 
-        (cleanPassword === 'Vilasa@Campus2026' || cleanPassword === 'vilasa123')) {
-      const vilasaProfile = {
-        id: 'admin-vilasa',
-        username: 'vilasa_admin',
-        name: 'Vilasa Café Admin',
-        email: 'vilasa@campusbites.com',
-        role: 'restaurant_admin',
-        restaurant_id: 'vilasa-cafe',
-        created_at: new Date().toISOString()
-      };
-      return res.status(200).json({ success: true, token: makeAdminToken(vilasaProfile), user: vilasaProfile, message: 'Vilasa Café Admin authenticated' });
-    }
 
     return res.status(401).json({
       success: false,

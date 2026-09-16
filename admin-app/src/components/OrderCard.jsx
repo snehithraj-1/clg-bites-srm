@@ -88,7 +88,7 @@ export default function OrderCard({
 
   const studentName = order.student_name || order.studentName || 'Student';
   const studentPhone = order.student_phone || order.studentPhone || '';
-  const restaurantName = order.restaurant_name || order.restaurantName || (order.restaurant_id === 'vilasa-cafe' ? 'Vilasa Café' : (order.restaurant_id === 'clg-bites-biryani-nation' ? 'Biryani Nation' : 'Local Home Kitchen'));
+  const restaurantName = order.restaurant_name || order.restaurantName || (order.restaurant_id === 'clg-bites-biryani-nation' ? 'Biryani Nation' : 'Local Home Kitchen');
   const deliveryLocation = order.delivery_location || order.deliveryLocation || 'SRM AP - Gate 3';
   const totalAmount = Number(order.total_amount || order.totalAmount) || 0;
   const shortId = (order.id || '').toString().slice(-6).toUpperCase();
