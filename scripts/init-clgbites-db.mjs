@@ -66,11 +66,16 @@ async function initClgBites() {
         delivery_partner_id VARCHAR(50),
         delivery_partner_name VARCHAR(255),
         delivery_partner_phone VARCHAR(50),
+        payment_method VARCHAR(50) DEFAULT 'cod',
+        payment_status VARCHAR(50) DEFAULT 'PENDING',
+        hostel_block VARCHAR(100),
+        room_number VARCHAR(100),
         cancelled_reason TEXT,
         created_at TIMESTAMPTZ DEFAULT NOW(),
         confirmed_at TIMESTAMPTZ DEFAULT NOW(),
         completed_at TIMESTAMPTZ,
         cancelled_at TIMESTAMPTZ,
+        confirmation_expires_at TIMESTAMPTZ,
         updated_at TIMESTAMPTZ DEFAULT NOW()
       );
     `;
