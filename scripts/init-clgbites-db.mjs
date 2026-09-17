@@ -9,20 +9,17 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-let dbUrl = process.env.DATABASE_URL || '';
-if (!dbUrl) {
-  try {
-    const envPath = path.resolve(__dirname, '../.env');
-    if (fs.existsSync(envPath)) {
-      const content = fs.readFileSync(envPath, 'utf8');
-      const match = content.match(/^\s*DATABASE_URL\s*=\s*(.+)$/m);
-      if (match && match[1]) dbUrl = match[1].trim();
-    }
-  } catch (e) {}
+const envPath = path.resolve(__dirname, '../.env');
+
+let dbUrl = process.env.DATABASE_URL;
+if (!dbUrl && fs.existsSync(envPath)) {
+  const envText = fs.readFileSync(envPath, 'utf8');
+  const match = envText.match(/^\s*DATABASE_URL\s*=\s*(.+)$/m);
+  if (match) dbUrl = match[1].trim();
 }
 
 if (!dbUrl) {
-  console.error('❌ DATABASE_URL is not defined in environment or .env');
+  console.error('❌ DATABASE_URL is not set in environment or .env');
   process.exit(1);
 }
 
